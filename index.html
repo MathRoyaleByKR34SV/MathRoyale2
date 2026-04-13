@@ -2908,12 +2908,12 @@ function loadTroopsSFX() {
     robot_died:    "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/Robot%20Died%20Eff.mp3",
     transition:    "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/Trantition%20effect.mp3",
   };
-  };
   for (const [key, path] of Object.entries(sfxFiles)) {
     const audio = new Audio(path);
     audio.preload = "auto";
     TROOPS_SFX[key] = audio;
   }
+}
 
 function playTroopSFX(name, volume = 0.8) {
   if (!isAppVisible) return;
@@ -5253,7 +5253,6 @@ const cardBanks = [
  {
   name: "Archer",
   questions: [
-   [
     {q:"0,5 + 1/2 = ?", a:1, opts:[0.55, 1, 1.5, 0.75]}, 
     {q:"0,2 + 1/5 = ?", a:2/5, opts:[1/5, 0.25, 2/5, 4/5]}, 
     {q:"0,25 + 1/4 = ?", a:1/2, opts:[1/4, 1/6, 1/2, 1/8]}, 
@@ -5354,8 +5353,7 @@ const cardBanks = [
     {q:"1/5 + 0,2 + 0,6 = ?", a:1, opts:[0.8, 1, 1.2, 0.9]}, 
     {q:"0,5 + 1/2 - 1 = ?", a:0, opts:[0, 0.5, 1, -0.5]}, 
     {q:"1/2 + 0,5 + 1/2 + 0,5 = ?", a:2, opts:[1, 1.5, 2.5, 2]}
-]
-  ],
+],
   shuffled: [],
   idx: 0
 },
