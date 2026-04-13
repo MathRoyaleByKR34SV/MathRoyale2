@@ -19,11 +19,7 @@
 --font-body:'Nunito',Arial,sans-serif;
 }
 *{box-sizing:border-box;}
-body{font-family:var(--font-body);background:#2c3e50;color:#fff;display:flex;flex-direction:column;align-items:center;margin:0;overflow:hidden;height:100vh; touch-action: manipulation;height: 100dvh; /* dynamic viewport height untuk iOS */
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-  box-sizing: border-box;
-}
+body{font-family:var(--font-body);background:#2c3e50;color:#fff;display:flex;flex-direction:column;align-items:center;margin:0;overflow:hidden;height:100vh; touch-action: manipulation;}
 button { transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
 button:active { transform: scale(0.9) !important; filter: brightness(0.8); }
 #math-bg{position:fixed;inset:0;background:linear-gradient(#1e3a2f 1px,transparent 1px),linear-gradient(90deg,#1e3a2f 1px,transparent 1px);background-size:60px 60px;opacity:.15;pointer-events:none;z-index:0;}
@@ -166,7 +162,7 @@ button:active { transform: scale(0.9) !important; filter: brightness(0.8); }
 @keyframes fadeInText{to{opacity:1}}
 .sword-animate{animation:swordClash 900ms cubic-bezier(.68,-.55,.27,1.55) forwards!important;filter:drop-shadow(0 0 30px #ffd700);}
 @keyframes swordClash{0%{transform:scale(.2) rotate(-45deg);opacity:0}35%{transform:scale(1.35) rotate(25deg)}65%{transform:scale(.92) rotate(-12deg)}100%{transform:scale(1) rotate(0)}}
-#game-container{width:360px;height:500px;background:#27ae60;border:6px solid #34495e;position:relative;margin-top:8px;border-radius:20px;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,.6);background-image:radial-gradient(circle at 25% 25%,#2ecc71 1px,transparent 0),radial-gradient(circle at 75% 75%,#2ecc71 1px,transparent 0);background-size:40px 40px;display:none;z-index:2; transform-origin: top center;flex-shrink: 0;}
+#game-container{width:360px;height:500px;background:#27ae60;border:6px solid #34495e;position:relative;margin-top:8px;border-radius:20px;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,.6);background-image:radial-gradient(circle at 25% 25%,#2ecc71 1px,transparent 0),radial-gradient(circle at 75% 75%,#2ecc71 1px,transparent 0);background-size:40px 40px;display:none;z-index:2; transform-origin: top center;}
 #game-timer { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); padding: 4px 14px; border-radius: 20px; font-family: var(--font-stat); font-size: 16px; color: #fff; border: 2px solid #f1c40f; z-index: 50; letter-spacing: 1px; }
 @media screen and (max-width: 365px) {
   #game-container { transform: scale(0.85); margin-top: 0px; }
@@ -239,9 +235,7 @@ button:active { transform: scale(0.9) !important; filter: brightness(0.8); }
 .pause-btn-suren:hover{background:linear-gradient(90deg,#e74c3c,#ff5e57);transform:translateY(-2px);box-shadow:0 6px 0 #8e1c1c;}
 .pause-btn-suren:active{transform:translateY(2px);box-shadow:0 1px 0 #8e1c1c;}
 .pause-hint{font-family:var(--font-ui);font-size:13px;color:rgba(255,255,255,0.45);letter-spacing:1px;margin:0;}
-#ui-layer{width:360px;display:none;flex-direction:column;align-items:center;gap:6px;margin-top:6px;z-index:2;flex-shrink: 0;
-  padding-bottom: env(safe-area-inset-bottom);
-}
+#ui-layer{width:360px;display:none;flex-direction:column;align-items:center;gap:6px;margin-top:6px;z-index:2;}
 #elixir-wrapper{width:340px;background:rgba(0,0,0,.5);border-radius:20px;height:22px;position:relative;border:2px solid var(--elixir);overflow:hidden;}
 #elixir-bar{height:100%;background:linear-gradient(90deg,#8e44ad,var(--elixir));border-radius:20px;transition:width .4s;width:50%;}
 #elixir-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-stat);font-size:11px;color:#fff;text-shadow:1px 1px 2px #000;}
@@ -896,56 +890,6 @@ button:active { transform: scale(0.9) !important; filter: brightness(0.8); }
   border-radius: 50px;
   cursor: pointer;
   box-shadow: 0 4px 0 #8e1c1c;
-}
-/* === iOS SAFE AREA FIX === */
-@supports (-webkit-touch-callout: none) {
-  body {
-    height: -webkit-fill-available;
-    min-height: -webkit-fill-available;
-  }
-  
-  #start-screen,
-  #lobby-screen,
-  #auth-screen {
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    box-sizing: border-box;
-  }
-  
-  .lobby-bottom {
-    padding-bottom: calc(8px + env(safe-area-inset-bottom));
-  }
-  
-  #ui-layer {
-    margin-bottom: env(safe-area-inset-bottom);
-  }
-}
-
-/* Wrapper agar game + UI tidak overflow */
-@media screen and (max-height: 700px) {
-  #game-container {
-    transform: scale(0.80);
-    transform-origin: top center;
-    margin-top: 0px;
-  }
-  #ui-layer {
-    transform: scale(0.85);
-    transform-origin: top center;
-    margin-top: -50px !important;
-  }
-}
-
-@media screen and (max-height: 600px) {
-  #game-container {
-    transform: scale(0.70);
-    transform-origin: top center;
-    margin-top: -20px;
-  }
-  #ui-layer {
-    transform: scale(0.80);
-    transform-origin: top center;
-    margin-top: -80px !important;
-  }
 }
 </style>
 </head>
@@ -2105,6 +2049,7 @@ createButtonSFX('close');
 // SYSTEM PROGRESSION
 // ============================================================
 let loggedInUsername = null; // Username untuk login (permanen)
+let isAppVisible = true;
 let playerName = "Player";
 let playerCoins = 1000;
 let playerTrophies = 0;
@@ -2603,12 +2548,12 @@ let isGameStarting = false;
 let matchTime = 180;
 let matchTimerId = null;
 let battleMusicPlaying = false;
-let enemyAITimeout = null;
 // ===== SFX SYSTEM =====
 let audioCtx = null;
 let badgeToastQueue = [];
 let badgeToastTimer = null;
 function createButtonSFX(type) {
+  if (!isAppVisible) return;
   try {
     if (!audioCtx) {
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -2938,6 +2883,7 @@ function createButtonSFX(type) {
 }
 // ===== TROOPS SFX SYSTEM =====
 const TROOPS_SFX = {};
+let activeSFXObjects = [];
 function loadTroopsSFX() {
   const sfxFiles = {
     dragon_kileer: "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/Dragon%20Kileer.mp3",
@@ -2956,45 +2902,39 @@ function loadTroopsSFX() {
     mighty_dragon: "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/Mighty%20Dragon.mp3",
     princess:      "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/Princess.mp3",
     swordsman:     "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/Swordsman.mp3",
+    sidetower:    "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/SideTower.mp3",
+    kingtower:    "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/KingTower.mp3",
+    cavalry_spawn: "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/Cavalry%20Spawn%20Eff.mp3",
+    robot_died:    "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/Robot%20Died%20Eff.mp3",
+    transition:    "https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/Trantition%20effect.mp3",
+  };
   };
   for (const [key, path] of Object.entries(sfxFiles)) {
     const audio = new Audio(path);
     audio.preload = "auto";
-    audio.mozAudioChannelType = 'content'; 
     TROOPS_SFX[key] = audio;
   }
-}
 
 function playTroopSFX(name, volume = 0.8) {
+  if (!isAppVisible) return;
   const sfx = TROOPS_SFX[name];
   if (!sfx) return;
-  try {
-    const clone = sfx.cloneNode();
-    const sfxVol = parseFloat(document.getElementById('sfx-slider')?.value || 0.7);
-    clone.volume = Math.min(1, volume * sfxVol);
-    
-    const battleMusic = document.getElementById('battle-music');
-    
-    // Simpan state music sebelum SFX play
-    const wasPlaying = battleMusic && !battleMusic.paused;
-    const savedTime = battleMusic ? battleMusic.currentTime : 0;
-    const savedVol = battleMusic ? battleMusic.volume : 0;
-    
-    clone.play().catch(e => console.log("SFX error:", e));
-    
-    // Cek setelah 100ms apakah music masih jalan
-    setTimeout(() => {
-      if (battleMusic && wasPlaying && battleMusic.paused && gameActive && !isPaused && !gameOver) {
-        battleMusic.currentTime = savedTime;
-        battleMusic.volume = savedVol;
-        battleMusic.play().catch(e => console.log("Music restore:", e));
-      }
-    }, 100);
-    
-  } catch(e) {
-    console.log("playTroopSFX error:", e);
-  }
+  
+  const clone = sfx.cloneNode();
+  clone.volume = volume * parseFloat(document.getElementById('sfx-slider')?.value || 0.7);
+  
+  // Masukkan ke daftar absen agar bisa kita kendalikan
+  activeSFXObjects.push(clone);
+  
+  // Hapus dari daftar jika suara sudah selesai diputar (agar memori HP tetap lega)
+  clone.onended = () => {
+    activeSFXObjects = activeSFXObjects.filter(item => item !== clone);
+  };
+
+  clone.play().catch(e => console.log("Troop SFX error:", e));
 }
+let lobbyMusicPlaying = false;
+
 function playLobbyMusic() {
   const music = document.getElementById('lobby-music');
   if (!music || lobbyMusicPlaying) return;
@@ -3222,7 +3162,7 @@ function startGameFromLobby(){
 }
 
 const CARD_POOL = [
-  { id:0, name:"Swordsman", emoji:" 🗡️ ", cost:2, hp:1500, dmg:100, spd:1.0, range:10, pdef:4, mdef:2, aspd:1.5, dmgType:"physical", type:"troop"},
+  { id:0, name:"Swordsman", emoji:" 🗡️ ", cost:2, hp:1600, dmg:100, spd:1.0, range:10, pdef:4, mdef:2, aspd:1.5, dmgType:"physical", type:"troop", passive:"berserk", berserkHPThreshold:500, berserkAspd:4 },
   { id:1, name:"King Orc", emoji:" 🧌 ", cost:4, hp:5700, dmg:230, spd:0.8, range:10, pdef:6, mdef:6, aspd:0.6, dmgType:"physical", type:"troop" },
   { id:2, name:"Storm Attack", emoji:" ⚡ ", cost:2, type:"spell", dmgType:"magic", spellDmg:700, animDuration:1200, noTowerDmg:true, stun:true, stunDuration:1500 },
 { id:3, name:"Robot Exploder", emoji:"🤖", cost:2, hp:600, dmg:60, spd:1.1, range:5, pdef:2, mdef:0, aspd:1.2, dmgType:"physical", type:"troop", explodeOnDeath:true, explodeDmg:800, explodeRange:50, towerPrioritized:true, autoExplodeRange:80 },
@@ -3231,7 +3171,7 @@ const CARD_POOL = [
   { id:6, name:"Meteor", emoji:" ☄️ ", cost:5, type:"spell", dmgType:"magic", spellDmg:1400, animDuration:2000, noTowerDmg:true },
   { id:7, name:"Frost Spell", emoji:" ❄️ ", cost:4, type:"spell", dmgType:"magic", freezeDuration:3500 },
   { id:8, name:"Dragon Killer", emoji:" ⚔️ ", cost:5, hp:3200, dmg:120, spd:1.0, range:10, pdef:5, mdef:5, aspd:1.0, dmgType:"physical", type:"troop", antiDragonDmg:600 },
-  { id:9, name:"Cavalry", emoji:" 🏇 ", cost:5, hp:1900, dmg:75, spd:2.5, range:15, pdef:5, mdef:3, aspd:2, dmgType:"physical", type:"troop"},
+  { id:9, name:"Cavalry", emoji:" 🏇 ", cost:5, hp:1900, dmg:75, spd:2.5, range:15, pdef:5, mdef:3, aspd:2, dmgType:"physical", type:"troop", passive:"rage", rageHPThreshold:500, rageDmg:100, rageAspd:5.0 },
   { id:10, name:"Princess", emoji:" 👸 ", cost:3, hp:700, dmg:50, spd:1.0, range:120, pdef:1, mdef:1, aspd:1.0, dmgType:"physical", type:"troop", passive:"stealth_from_towers" },
   { id:11, name:"Archer", emoji:" 🏹 ", cost:5, hp:1450, dmg:50, spd:1.0, range:90, pdef:0, mdef:0, aspd:1.9, dmgType:"physical", type:"troop", scalingDmg:true, scalingIncrease:8, scalingInterval:1500, scalingMax:250, ignoreDefensePct:0.6 },
   { id:12, name:"Assassin", emoji:" 🥷 ", cost:5, hp:2100, dmg:175, spd:1.0, range:20, pdef:2, mdef:2, aspd:1.5, dmgType:"physical", type:"troop", antiRange:true, antiRangeMult:4, rangeThreshold:75 },
@@ -4911,7 +4851,6 @@ const cardBanks = [
  {
   name: "Dragon Killer",
   questions: [
-   [
     {q:"DATA: 2, 4.\nMEAN = ...", a:3, opts:[2, 3, 6, 4]}, 
     {q:"DATA: 3, 7.\nMEAN = ...", a:5, opts:[5, 4, 10, 3]}, 
     {q:"DATA: 5, 5, 5.\nMEAN = ...", a:5, opts:[15, 3, 5, 10]}, 
@@ -5043,7 +4982,6 @@ const cardBanks = [
     {q:"DATA: 25, 75, 50.\nJANGKAUAN = ...", a:50, opts:[150, 25, 50, 75]}, 
     {q:"DATA: 4, 4, 4, 9.\nJANGKAUAN = ...", a:5, opts:[21, 0, 9, 5]}, 
     {q:"DATA: 1000, 0.\nJANGKAUAN = ...", a:1000, opts:[0, 500, 100, 1000]}
-]
   ],
   shuffled: [],
   idx: 0
@@ -5051,7 +4989,6 @@ const cardBanks = [
  {
   name: "Cavalry",
   questions: [
-   [
     {q:"X + Y = 2, X - Y = 0\nMAKA NILAI X?", a:1, opts:[0, 2, 1, -1]}, 
     {q:"X + Y = 4, X - Y = 0\nMAKA NILAI Y?", a:2, opts:[2, 0, 4, -2]},
     {q:"X + Y = 6, X - Y = 0\nMAKA NILAI X?", a:3, opts:[0, 3, 6, 9]}, 
@@ -5152,7 +5089,6 @@ const cardBanks = [
     {q:"X + Y = 1, X - Y = -1\nMAKA NILAI X?", a:0, opts:[0, 1, -1, 2]},
     {q:"X + Y = 0, X - Y = 0\nMAKA NILAI X?", a:0, opts:[1, -1, 10, 0]}, 
     {q:"X + Y = 50, X - Y = 0\nMAKA NILAI Y?", a:25, opts:[50, 25, 0, 12.5]}
-],
   ],
   shuffled: [],
   idx: 0
@@ -5426,7 +5362,6 @@ const cardBanks = [
  {
   name: "Assassin",
   questions: [
-   [
     {q:"2^2 = ?", a:4, opts:[2, 4, 8, 6]},
     {q:"2^3 = ?", a:8, opts:[9, 12, 8, 6]},
     {q:"2^4 = ?", a:16, opts:[16, 32, 12, 8]},
@@ -5504,7 +5439,6 @@ const cardBanks = [
     {q:"2^4 / 4^2 = ?", a:1, opts:[0, 1, 4, 16]},
     {q:"3^3 / 9 = ?", a:3, opts:[1, 9, 3, 27]},
     {q:"(2^2 + 1)^2 = ?", a:25, opts:[10, 25, 16, 20]}
-]
   ],
   shuffled: [],
   idx: 0
@@ -5918,6 +5852,7 @@ function getNextQuestion(cardPoolId) {
 }
 
 let activeSlots=[], deckQueue=[];
+
 
 function initDeck(){
   const ids = lobbyDeck.map(c => c.id);
@@ -6369,28 +6304,22 @@ function spawnUnitProjectile(u, tgt, emoji) {
 }
 
 function evaluateTimeoutWin() {
-  // TUTUP SEMUA POPUP DULU SEBELUM END GAME
-  document.getElementById('math-popup').style.display = 'none';
-  exitPlacementMode();
-  currentSlot = null;
-  currentQuestion = null;
-  
-  let pTowerCount = 0;
-  let eTowerCount = 0;
-  let pTotalHP = 0;
-  let eTotalHP = 0;
-  towers.forEach(t => {
-    if (t.hp > 0) {
-      if (t.side === 'player') { pTowerCount++; pTotalHP += t.hp; } 
-      else if (t.side === 'enemy') { eTowerCount++; eTotalHP += t.hp; }
-    }
-  });
-  if (pTowerCount > eTowerCount) { endGame("YOU WIN!"); } 
-  else if (eTowerCount > pTowerCount) { endGame("YOU LOSE..."); } 
-  else {
-    if (pTotalHP >= eTotalHP) { endGame("YOU WIN!"); } 
-    else { endGame("YOU LOSE..."); }
-  }
+  let pTowerCount = 0;
+  let eTowerCount = 0;
+  let pTotalHP = 0;
+  let eTotalHP = 0;
+  towers.forEach(t => {
+    if (t.hp > 0) {
+      if (t.side === 'player') { pTowerCount++; pTotalHP += t.hp; } 
+      else if (t.side === 'enemy') { eTowerCount++; eTotalHP += t.hp; }
+    }
+  });
+  if (pTowerCount > eTowerCount) { endGame("YOU WIN!"); } 
+  else if (eTowerCount > pTowerCount) { endGame("YOU LOSE..."); } 
+  else {
+    if (pTotalHP >= eTotalHP) { endGame("YOU WIN!"); } 
+    else { endGame("YOU LOSE..."); }
+  }
 }
 
 function gameLoop(){
@@ -6440,7 +6369,11 @@ function gameLoop(){
     if(target){ 
       shootProjectile(t, target, t.dmg, t.type==='side', t.type==='king'?' 💥 ':' 🧨 '); 
       t.lastAtk=now; 
-      if(t.type==='side') target.slowedUntil=now+2000; 
+      if(t.type==='side') {
+        target.slowedUntil=now+2000;
+        playTroopSFX('side_tower', 0.6); // ← TAMBAHKAN
+      }
+      if(t.type==='king') playTroopSFX('king_tower', 0.6); // ← TAMBAHKAN
     }
   });
 
@@ -6520,29 +6453,30 @@ function gameLoop(){
           if(u.id === 10 || u.id === 11) spawnUnitProjectile(u, tgt, 'arrow');
           
           // SFX Serangan Troops
-const troopSFXMap = {
-  0:  'swordsman',      // Swordsman
-  1:  'king_orc',       // King Orc
-  2:  'storm',          // Storm Attack
-  3:  'robot',          // Robot Exploder
-  4:  'bazooka',        // Bazooka Tower
-  5:  'tanker',         // Tanker
-  6:  'meteor',         // Meteor
-  7:  'frost',          // Frost Spell
-  8:  'dragon_kileer',  // Dragon Killer
-  9:  'cavalry',        // Cavalry
-  10: 'princess',       // Princess
-  11: 'archer',         // Archer
-  12: 'assassin',       // Assassin
-  13: 'ghost',          // Ghost
-  14: 'dark_enchanter', // Dark Enchanter
-  15: 'mighty_dragon',  // Mighty Dragon
-};
-if (troopSFXMap[u.id] !== undefined) {
-  playTroopSFX(troopSFXMap[u.id]);
-} else {
-  createButtonSFX('battle');
-}
+          const troopSFXMap = {
+            0:  'swordsman',
+            1:  'king_orc',
+            2:  'storm',
+            3:  'robot',
+            4:  'bazooka',
+            5:  'tanker',
+            6:  'meteor',
+            7:  'frost',
+            8:  'dragon_kileer',
+            9:  'cavalry',
+            10: 'princess',
+            11: 'archer',
+            12: 'assassin',
+            13: 'ghost',
+            14: 'dark_enchanter',
+            15: 'mighty_dragon'
+          };
+          
+          if (troopSFXMap[u.id]) {
+            playTroopSFX(troopSFXMap[u.id]);
+          } else {
+            createButtonSFX('battle'); // Pengaman kalau ada kartu yang terlewat
+          }
           
           u.lastAtk = now;
         }
@@ -6570,13 +6504,6 @@ if (troopSFXMap[u.id] !== undefined) {
     
     if(u.burnTimer>0){u.hp-=2.5; u.burnTimer-=50; u.el.classList.add('is-burning');} 
     else u.el.classList.remove('is-burning');
-    if(u.hpDrain && !u.isBuilding){
-  u.drainAcc = (u.drainAcc||0) + 50;
-  if(u.drainAcc >= 1000){
-    u.hp -= u.hpDrain;
-    u.drainAcc = 0;
-  }
-}
 
     if(u.hp<=0){ u.isDead=true; if(u.el)u.el.remove(); }
     const pct=Math.max(0,u.hp/(u.maxHP||100)*100);
@@ -6606,6 +6533,7 @@ if (troopSFXMap[u.id] !== undefined) {
   units.forEach(u => {
     if(u.isDead && u.explodeOnDeath && !u._exploded) {
       u._exploded = true;
+      playTroopSFX('robot_died', 0.9); // ← TAMBAHKAN
       const boom = document.createElement('div');
       boom.style.cssText = `position:absolute;font-size:36px;z-index:45;left:${u.laneX-18}px;top:${u.pos-18}px;animation:explode 600ms forwards;`;
       boom.textContent = '💥';
@@ -6628,19 +6556,11 @@ if (troopSFXMap[u.id] !== undefined) {
   updateHPDisplay();
   updateDeckDisabled();
 
-  if (isMultiplayer && isHost && conn && conn.open && (now - lastSyncTime > 1000)) {
-    // Hanya kirim tower yang HP nya berubah
-    const changedTowers = towers
-        .filter(t => t.hp !== t.lastSyncedHP)
-        .map(t => {
-            t.lastSyncedHP = t.hp;
-            return { id: t.id, hp: t.hp };
-        });
-    if (changedTowers.length > 0) {
-        conn.send({ type: 'SYNC_TOWERS', towers: changedTowers });
-    }
+  if (isMultiplayer && isHost && conn && (now - lastSyncTime > 500)) {
+    conn.send({ type: 'SYNC_TOWERS', towers: towers.map(t => ({ id: t.id, hp: t.hp })) });
     lastSyncTime = now;
-}
+  }
+
   // --- 7. CEK MENANG/KALAH ---
   const eKing=towers.find(t=>t.id==='enemy-king-tower');
   const pKing=towers.find(t=>t.id==='player-king-tower');
@@ -6673,24 +6593,25 @@ function getEnemyDeckByStage(stage) {
 }
 
 function enemyAI(version){
-  if(!gameActive||version!==gameVersion||gameOver)return;
-  const pool = getEnemyDeckByStage(currentStage);
-  const affordable = pool.filter(id => eElixir >= CARD_POOL[id].cost);
-  if (affordable.length > 0) {
-    const card = CARD_POOL[affordable[Math.floor(Math.random() * affordable.length)]];
-    eElixir -= card.cost;
-    const pUnits = units.filter(u => u.side === 'player' && !u.isDead);
-    let forcedLane = null;
-    if (pUnits.length > 0) {
-      const leadUnit = pUnits.reduce((prev, curr) => prev.pos < curr.pos ? prev : curr);
-      forcedLane = leadUnit.lane;
-    } else { forcedLane = Math.random() < 0.5 ? 'left' : 'right'; }
-    spawn('enemy', card, forcedLane);
-  }
-  const baseIntervalSeconds = 35 - (currentStage - 1) * 0.5;
-  const baseDelay = Math.max(2000, baseIntervalSeconds * 1000);
-  enemyAITimeout = setTimeout(() => enemyAI(version), baseDelay + (Math.random() * 0.2 - 0.1) * baseDelay);
+  if(!gameActive||version!==gameVersion)return;
+  const pool = getEnemyDeckByStage(currentStage);
+  const affordable = pool.filter(id => eElixir >= CARD_POOL[id].cost);
+  if (affordable.length > 0) {
+    const card = CARD_POOL[affordable[Math.floor(Math.random() * affordable.length)]];
+    eElixir -= card.cost;
+    const pUnits = units.filter(u => u.side === 'player' && !u.isDead);
+    let forcedLane = null;
+    if (pUnits.length > 0) {
+      const leadUnit = pUnits.reduce((prev, curr) => prev.pos < curr.pos ? prev : curr);
+      forcedLane = leadUnit.lane;
+    } else { forcedLane = Math.random() < 0.5 ? 'left' : 'right'; }
+    spawn('enemy', card, forcedLane);
+  }
+  const baseIntervalSeconds = 35 - (currentStage - 1) * 0.5;
+  const baseDelay = Math.max(2000, baseIntervalSeconds * 1000);
+  setTimeout(() => enemyAI(version), baseDelay + (Math.random() * 0.2 - 0.1) * baseDelay);
 }
+
 function openPopup(slotIndex){
   if(placementMode) { showToast('👇 Click Arena To Deploy ' + CARD_POOL[placementCardId].emoji.trim() + '!'); return; }
   const cardId = activeSlots[slotIndex];
@@ -6919,13 +6840,11 @@ function stopAllGameIntervals() {
     if (elixirId) clearInterval(elixirId);
     if (matchTimerId) clearInterval(matchTimerId);
     if (gameMathSymTimer) clearInterval(gameMathSymTimer);
-    if (enemyAITimeout) clearTimeout(enemyAITimeout); // ← TAMBAH
     
     gameLoopId = null;
     elixirId = null;
     matchTimerId = null;
     gameMathSymTimer = null;
-    enemyAITimeout = null; // ← TAMBAH
 }
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
   async function startGame(){
@@ -7094,23 +7013,18 @@ function triggerMathExplosion(){
 }
 
 function resetGameWithRebirth(){
+  playTroopSFX('transition', 1.0); // ← TAMBAHKAN
   const rs=document.getElementById('rebirth-screen'); rs.style.opacity='0';
-  gameActive=false; 
+  gameActive=false;
   isGameStarting = false;
   stopAllGameIntervals();
   stopBattleMusic(); 
-  document.getElementById('math-popup').style.display = 'none';
-  exitPlacementMode();
-  currentSlot = null;
-  currentQuestion = null;
-  isPaused = false;
   if(gameMathSymTimer) { clearInterval(gameMathSymTimer); gameMathSymTimer = null; }
   const gc = document.getElementById('game-container');
   gc.querySelectorAll('.game-math-sym').forEach(s => s.remove());
   units.forEach(u=>{if(u.el)u.el.remove();}); projectiles.forEach(p=>{if(p.el)p.el.remove();}); units=[]; projectiles=[];
   document.getElementById('ui-layer').style.display='none'; document.getElementById('game-container').style.display='none';
-  setTimeout(()=>{document.getElementById('rematch-btn').disabled = false;
- rs.style.display='none'; document.getElementById('lobby-screen').style.display='flex';playLobbyMusic(); updateTopBarUI(); updateLobbyDeckGrid(); renderLobbyBadges(); }, 600);
+  setTimeout(()=>{ rs.style.display='none'; document.getElementById('lobby-screen').style.display='flex';playLobbyMusic(); updateTopBarUI(); updateLobbyDeckGrid(); renderLobbyBadges(); }, 600);
 }
 
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(placementMode){ exitPlacementMode(); return; } togglePause(); } });
@@ -7481,8 +7395,6 @@ function setupConnection() {
 
   conn.on('data', (data) => {
     if (data.type === 'START_GAME') {
-      isMultiplayer = true;  // Pastikan flag benar sebelum startGame
-      isHost = false; 
       closeAllModals();
       document.getElementById('lobby-screen').style.display='none';
       startGame();
@@ -7804,8 +7716,8 @@ function closeAllModals() {
 }
 // ===== CARD INFO POPUP =====
 const CARD_PASSIVE_DESC = {
-  0:  "Tidak ada pasif.Unit memiliki stats yang seimbang ",
-  1:  "Unit tangguh dengan HP dan Attack tinggi.",
+  0:  "Berserk: Saat HP < 500, kecepatan serang meningkat drastis menjadi 4x/detik.",
+  1:  "Tidak ada pasif. Unit tangguh dengan HP tinggi.",
   2:  "Spell — Stun: Menyerang area, membuat musuh tidak bisa bergerak sesaat.",
   3:  "Suicide Bomb: Saat mati, meledak dan memberikan damage area 800 ke semua musuh dalam radius 50px.",
   4:  "Building: Menembak area secara otomatis. HP terus berkurang seiring waktu.",
@@ -7813,10 +7725,10 @@ const CARD_PASSIVE_DESC = {
   6:  "Spell — Meteor: Menjatuhkan meteor besar ke area musuh. Damage sangat tinggi.",
   7:  "Spell — Freeze: Membekukan semua musuh di arena selama beberapa detik.",
   8:  "Dragon Slayer: Memberikan damage sangat besar (600 DMG) jika menyerang Mighty Dragon. Unit pertahanan yang sangat tangguh.",
-  9:  "Unit memiliki stats seimbang dengan speed dan attack speed tinggi!",
+  9:  "Rage: Saat HP < 500, damage dan kecepatan serang meningkat drastis.",
   10: "Stealth: Tidak bisa diserang oleh menara musuh. Hanya bisa diserang unit.",
   11: "Scaling: Damage terus meningkat seiring waktu bertarung. Bisa mencapai 250 max.",
-  12: "Range Slayer: Sangat mematikan melawan unit jarak jauh! Memberikan 4x lipat damage (700 DMG) kepada pasukan musuh yang memiliki jangkauan serang (range) di atas 75.",
+  12: "Mage Slayer: Sangat mematikan melawan unit jarak jauh! Memberikan 4x lipat damage (700 DMG) kepada pasukan musuh yang memiliki jangkauan serang (range) di atas 75.",
   13: "Undead: Kebal terhadap serangan fisik. Hanya bisa dikalahkan dengan sihir/magic.",
   14: "Area Magic: Setiap serangan mengenai semua musuh di sekitar target.",
   15: "Dragon Fire: Serangan area + menyalakan api pada musuh (burn damage) setiap beberapa detik.",
@@ -7955,7 +7867,7 @@ function updateVolumeUI(type) {
 window.onload = async () => { 
   createFloatingMath(); 
   
-   const savedUser = localStorage.getItem('mathRoyaleLoggedInUser');
+  const savedUser = localStorage.getItem('mathRoyaleLoggedInUser');
   if (savedUser) {
     // Coba Auto-Login
     document.getElementById('auth-screen').style.display = 'none';
@@ -7980,35 +7892,51 @@ window.onload = async () => {
     document.getElementById('auth-screen').style.display = 'flex';
   }
 };
-// Fitur auto-stop audio saat keluar dari tab/browser
-document.addEventListener("visibilitychange", function() {
-    const battleMusic = document.getElementById('battle-music');
-    const lobbyMusic = document.getElementById('lobby-music');
 
-    if (document.hidden) {
-        // Jika player keluar dari tab, matikan semua suara
-        if (battleMusic) battleMusic.pause();
-        if (lobbyMusic) lobbyMusic.pause();
-        
-        // Opsional: Jika kamu punya AudioContext untuk SFX, matikan juga
-        if (audioCtx && audioCtx.state === 'running') {
-            audioCtx.suspend();
-        }
-    } else {
-        // Jika player kembali ke tab, nyalakan kembali sesuai kondisi game
-        if (gameActive && !isPaused && !gameOver) {
-            if (battleMusic) battleMusic.play().catch(e => console.log("Music resume blocked"));
-        } else if (!gameActive) {
-            // Jika masih di lobby
-            if (lobbyMusic) lobbyMusic.play().catch(e => console.log("Lobby music resume blocked"));
-        }
+// ============================================================
+// AUTO-PAUSE SYSTEM (FIX BGM & SFX GHOSTING)
+// ============================================================
+document.addEventListener('visibilitychange', function() {
+  const battleMusic = document.getElementById('battle-music');
+  const lobbyMusic = document.getElementById('lobby-music');
 
-        // Jalankan kembali AudioContext
-        if (audioCtx && audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
+  if (document.hidden) {
+    isAppVisible = false;
+    // 1. Pause BGM
+    if (battleMusic) battleMusic.pause();
+    if (lobbyMusic) lobbyMusic.pause();
+    
+    // 2. MATIKAN TOTAL SEMUA SFX YANG SEDANG JALAN
+    isAppVisible = false; // ← TAMBAHKAN DI SINI
+    activeSFXObjects.forEach(sfx => {
+      try {
+        sfx.pause();
+        sfx.currentTime = 0;
+      } catch(e) {}
+    });
+    activeSFXObjects = [];
+
+    // 3. Suspend SFX Tombol 8-bit
+    if (audioCtx && audioCtx.state === 'running') {
+      audioCtx.suspend();
     }
+  } else {
+    isAppVisible = true;
+    // 4. Resume BGM sesuai status
+    if (gameActive && !gameOver && battleMusicPlaying) {
+      battleMusic.play().catch(e => console.log("Battle music resume blocked"));
+    } else if (!gameActive && lobbyMusicPlaying) {
+      lobbyMusic.play().catch(e => console.log("Lobby music resume blocked"));
+    }
+
+    // 5. Bangunkan kembali sistem SFX Tombol
+    isAppVisible = true; // ← TAMBAHKAN DI SINI
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }
 });
+
 </script>
 <audio id="battle-music" loop preload="auto">
   <source src="https://raw.githubusercontent.com/MathRoyaleByKR34SV/MathRoyale2/main/Volatile%20Reaction%20(online-audio-converter.com).mp3" type="audio/mpeg">
