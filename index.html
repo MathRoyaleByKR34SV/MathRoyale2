@@ -3257,22 +3257,22 @@ function startGameFromLobby(){
 }
 
 const CARD_POOL = [
-  { id:0, name:"Swordsman", emoji:" 🗡️ ", cost:2, hp:1500, dmg:100, spd:1.0, range:10, pdef:4, mdef:2, aspd:1.5, dmgType:"physical", type:"troop" },
-  { id:1, name:"King Orc", emoji:" 🧌 ", cost:4, hp:5200, dmg:210, spd:0.8, range:10, pdef:3, mdef:3, aspd:0.6, dmgType:"physical", type:"troop" },
-  { id:2, name:"Storm Attack", emoji:" ⚡ ", cost:2, type:"spell", dmgType:"magic", spellDmg:750, animDuration:1300, noTowerDmg:true, stun:true, stunDuration:1500 },
+  { id:0, name:"Swordsman", emoji:" 🗡️ ", cost:2, hp:1500, dmg:100, spd:1.0, range:10, pdef:2, mdef:2, aspd:1.3, dmgType:"physical", type:"troop" },
+  { id:1, name:"King Orc", emoji:" 🧌 ", cost:4, hp:3500, dmg:150, spd:0.8, range:5, pdef:2.5, mdef:2.5, aspd:0.6, dmgType:"physical", type:"troop" },
+  { id:2, name:"Storm Attack", emoji:" ⚡ ", cost:2, type:"spell", dmgType:"magic", spellDmg:700, animDuration:1300, noTowerDmg:true, stun:true, stunDuration:1500 },
   { id:3, name:"Robot Exploder", emoji:" 🤖 ", cost:2, hp:800, dmg:50, spd:1.2, range:5, pdef:2, mdef:2, aspd:1.1, dmgType:"physical", type:"troop", explodeOnDeath:true, explodeDmg:800, explodeRange:50, towerPrioritized:true, autoExplodeRange:80 },
-  { id:4, name:"Bazooka Tower", emoji:" 💣 ", cost:5, hp:2500, dmg:125, spd:0, range:100, pdef:3, mdef:3, aspd:1.2, dmgType:"physical", type:"building", area:true, hpDrain:35 },
-  { id:5, name:"Tanker", emoji:" 🛡️ ", cost:5, hp:5900, dmg:50, spd:0.7, range:10, pdef:4, mdef:4, aspd:1, dmgType:"physical", type:"troop" },
+  { id:4, name:"Bazooka Tower", emoji:" 💣 ", cost:5, hp:2500, dmg:120, spd:0, range:100, pdef:2, mdef:2, aspd:1.2, dmgType:"physical", type:"building", area:true, hpDrain:35 },
+  { id:5, name:"Tanker", emoji:" 🛡️ ", cost:5, hp:3800, dmg:50, spd:0.7, range:10, pdef:3.5, mdef:3.5, aspd:1, dmgType:"physical", type:"troop" },
   { id:6, name:"Meteor", emoji:" ☄️ ", cost:5, type:"spell", dmgType:"magic", spellDmg:1400, animDuration:2000, noTowerDmg:true },
-  { id:7, name:"Frost Spell", emoji:" ❄️ ", cost:4, type:"spell", dmgType:"magic", freezeDuration:3500 },
+  { id:7, name:"Frost Spell", emoji:" ❄️ ", cost:4, type:"spell", dmgType:"magic", freezeDuration:4500 },
   { id:8, name:"Dragon Killer", emoji:" ⚔️ ", cost:5, hp:3500, dmg:125, spd:0.8, range:10, pdef:3, mdef:3, aspd:1.2, dmgType:"physical", type:"troop", antiDragonDmg:600 },
   { id:9, name:"Cavalry", emoji:" 🏇 ", cost:5, hp:2000, dmg:75, spd:2.6, range:10, pdef:5, mdef:3, aspd:2.0, dmgType:"physical", type:"troop"},
-  { id:10, name:"Princess", emoji:" 👸 ", cost:3, hp:700, dmg:60, spd:1.0, range:120, pdef:1, mdef:1, aspd:1.0, dmgType:"physical", type:"troop", passive:"stealth_from_towers" },
+  { id:10, name:"Princess", emoji:" 👸 ", cost:3, hp:700, dmg:70, spd:1.0, range:120, pdef:1, mdef:1, aspd:1.0, dmgType:"physical", type:"troop", passive:"stealth_from_towers" },
   { id:11, name:"Archer", emoji:" 🏹 ", cost:5, hp:1500, dmg:60, spd:1.0, range:90, pdef:0, mdef:0, aspd:2.0, dmgType:"physical", type:"troop", scalingDmg:true, scalingIncrease:8, scalingInterval:1500, scalingMax:250, ignoreDefensePct:0.7 },
   { id:12, name:"Assassin", emoji:" 🥷 ", cost:5, hp:2200, dmg:170, spd:1.0, range:20, pdef:2, mdef:2, aspd:1.3, dmgType:"physical", type:"troop", antiRange:true, antiRangeMult:4, rangeThreshold:75 },
-  { id:13, name:"Ghost", emoji:" 👻 ", cost:3, hp:1500, dmg:35, spd:1.1, range:10, pdef:100, mdef:0, aspd:1.0, dmgType:"physical", type:"troop"},
-  { id:14, name:"Dark Enchanter", emoji:" 🧙 ", cost:5, hp:1350, dmg:200, spd:1.0, range:80, pdef:2, mdef:2, aspd:1.3, dmgType:"magic", type:"troop", area:true },
-  { id:15, name:"Mighty Dragon", emoji:" 🐉 ", cost:7, hp:3300, dmg:240, spd:1.0, range:70, pdef:2.5, mdef:2.5, aspd:1.1, dmgType:"magic", type:"troop", area:true, burn:true, burnDmgPerSec:30, burnDuration:4000, burnCooldown:8000 },
+  { id:13, name:"Ghost", emoji:" 👻 ", cost:3, hp:1800, dmg:70, spd:1.1, range:10, pdef:80, mdef:0, aspd:1.0, dmgType:"physical", type:"troop"},
+  { id:14, name:"Dark Enchanter", emoji:" 🧙 ", cost:5, hp:1500, dmg:200, spd:1.0, range:80, pdef:2, mdef:2, aspd:1.3, dmgType:"magic", type:"troop", area:true },
+  { id:15, name:"Mighty Dragon", emoji:" 🐉 ", cost:7, hp:3100, dmg:250, spd:1.0, range:70, pdef:2.5, mdef:2.5, aspd:1.1, dmgType:"magic", type:"troop", area:true, burn:true, burnDmgPerSec:30, burnDuration:4000, burnCooldown:8000 },
 ];
 
 const INSTANT_SPELL_IDS = [7];
