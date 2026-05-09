@@ -16,6 +16,7 @@
     "win": {
       "target": "nsis"
     },
+    "publish": null,
     "nsis": {
       "oneClick": true,
       "installerIcon": false,
