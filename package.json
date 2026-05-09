@@ -1,0 +1,30 @@
+{
+  "name": "math-royale",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.mathRoyale.app",
+    "productName": "Math Royale",
+    "files": [
+      "index.html",
+      "main.js"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": true,
+      "installerIcon": false,
+      "uninstallerIcon": false,
+      "deleteAppDataOnUninstall": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0"
+  }
+}
