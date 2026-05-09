@@ -31,9 +31,15 @@ jobs:
           npm install -g @capacitor/cli
           npm install @capacitor/core @capacitor/android
 
+      - name: Prepare web folder
+        run: |
+          mkdir -p www
+          cp index.html www/index.html
+          cp *.mp3 www/ 2>/dev/null || true
+
       - name: Init Capacitor
         run: |
-          npx cap init "Math Royale" "com.mathRoyale.app" --web-dir .
+          npx cap init "Math Royale" "com.mathRoyale.app" --web-dir www
 
       - name: Add Android platform
         run: npx cap add android
